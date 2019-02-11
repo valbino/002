@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+void display(int *, int);
+int getAverage(int *, int, int);
+void getMedian(int *, int);
+
+int main()
+{
+	char one = '*';
+	int *ptr = nullptr;
+	int numStud; 
+	int total = 0;
+
+	cout << "How many students were surveyed "<< endl;
+	cin >> numStud;
+	
+	ptr = new int[numStud];
+	
+	cout << "This is the average " << getAverage(ptr, numStud, total) << endl;
+	//cout << "This is the median " << getMedian(ptr, numStud);
+	display(ptr, numStud);
+
+	return 0;
+}
+
+void display(int *ptr,int num)
+{
+	
+	for (int i = 0; i < num; i++)
+	{
+		cout << "S" << i + 1;
+		for (int j = 0; j < ptr[i]; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+}
+
+int getAverage(int *ptr, int num, int total)
+{
+	for (int count = 0; count < num; count++)
+	{
+		cout << "Student # "<< (count + 1) << endl;
+		cin >> ptr[count];
+		while (ptr[count] < 0)
+		{
+			cout << "Only positive numbers \n" ;
+			cin >> ptr[count];
+		}
+	}
+	for (int i = 0; i < num; i++)
+	{
+		total += ptr[i];
+
+	}
+
+	int average = total / num;
+	return average;
+
+}
+void getMedian(int *ptr, int num)
+{
+	int minI, minV;
+
+	for (int start = 0; start < (num - 1); start++)
+	{
+		minI = start;
+		minV = ptr[start];
+		for (int i = start + 1; i < num; i++)
+		{
+			if (ptr[i] < minV)
+			{
+				minV = ptr[i];
+				minI = i;
+
+			}
+		}
+	}
+
+}
